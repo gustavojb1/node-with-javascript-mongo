@@ -1,5 +1,7 @@
+const Link = require('../models/Link')
 
-const redirect = async (req,res)=>{
+
+const redirect = async (req, res) => {
   let tittle = req.params.tittle
 
   try {
@@ -12,3 +14,5 @@ const redirect = async (req,res)=>{
   }
 
 }
+
+module.exports={redirect}
