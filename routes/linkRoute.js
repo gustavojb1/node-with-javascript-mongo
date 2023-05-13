@@ -6,7 +6,7 @@ const router = express.Router()
 
 router.get('/:tittle', linkController.redirect)
 
-router.get('/', (req, res) => res.render('index'))
+router.get('/', (req, res) => res.render('index', {error:false, body:{}}))
 
 router.post('/', express.urlencoded({extended:true}), linkController.addLink)
 
