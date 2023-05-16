@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Links</title>
+</head>
+
+<body>
+
+  <h1>Links</h1>
+  <a href="/add">Adicionar Link</a>
+
+  <% links.map((link)=>{ %>
+    <div id="<%= link._id %>">
+      <form method="POST" action="/?_method=DELETE">
+        <h2>
+          <%=link.tittle %>
+        </h2>
+        <div>
+          <%=link.description %>
+        </div>
+        <div>
+          <%=link.url %>
+        </div>
+        <input name="id" value="<%= link._id %>" hidden>
+        <button type="submit">Delete</button>
+      </form>
+      
+    </div>
+    <% }) %>
+
+
+
+
+
+      <!-- <script>
+
+        function deleteLink(id) {
+          fetch('/' + id + 'o', { method: 'DELETE' }).then(res => {
+
+            if (res.status == 200) {
+              res.text().then(linkId => {
+                document.getElementById(linkId).remove()
+              })
+            }else{
+              res.json().then(err=>{
+                console.log(err.message)
+                alert(err.message)
+              })
+            }
+          })
+
+        }
+
+      </script> -->
+
+</body>
+
+</html>
