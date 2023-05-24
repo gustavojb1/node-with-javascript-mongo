@@ -12,7 +12,7 @@
 
 // SALVAR UM DOCUMENT(DADO) NO BANCO -- SALVOU EM LINKS POIS O MONGOOSE PRURALIZA O NOME DO MODEL
 // let link = new Link({
-//   tittle : "twitter",
+//   title : "twitter",
 //   description: "link para o twitter",
 //   url: "https://twitter.com/progrbr"
 // })

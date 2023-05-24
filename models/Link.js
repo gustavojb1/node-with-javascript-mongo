@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
 const linkSchema = new mongoose.Schema({
-  tittle: { type: String, required: true },
+  title: { type: String, required: true },
   description: String,
   url: { type: String, required: true },
   click: { type: Number, default: 0 }

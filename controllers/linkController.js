@@ -2,11 +2,10 @@ const Link = require('../models/Link')
 
 
 const redirect = async (req, res) => {
-  let tittle = req.params.tittle
+  let title = req.params.title
 
   try {
-    let doc = await Link.findOne({ tittle })
-    console.log(doc)
+    let doc = await Link.findOneAndUpdate({ title }, {$inc: { click: 1}})
     if (doc) {
       res.redirect(doc.url)
     } else {
@@ -26,22 +25,22 @@ const addLink = async (req, res) => {
     let doc = await link.save()
     res.redirect('/')
   } catch (error) {
-    res.render('index', { error, body: req.body })
+    res.render('add', { error, body: req.body })
   }
 }
 
 const allLinks = async (req, res) => {
   try {
-    let links = await Link.find({})
-    res.render('all', {links} );
+    let docs = await Link.find({})
+    res.render('all', { links: docs });
   } catch (error) {
     res.send(error)
   }
 }
 
-const deleteLink = async (req, res) =>{
+const deleteLink = async (req, res) => {
   let id = req.params.id
-  if(!id){
+  if (!id) {
     id = req.body.id
   }
   try {
@@ -53,6 +52,38 @@ const deleteLink = async (req, res) =>{
   }
 }
 
+const loadLink = async (req, res) => {
+  let id = req.params.id
+
+  try {
+    let doc = await Link.findById(id)
+    res.render('edit', { error:false, body: doc })
+  } catch (error) {
+    res.status(404).send(error)
+  }
+}
+
+const editLink = async (req, res) => {
+
+  let link = {};
+  link.title = req.body.title
+  link.description = req.body.description
+  link.url = req.body.url
+
+  let id = req.params.id
+  if (!id) {
+    id = req.body.id
+  }
+
+  try {
+    // let doc = await Link.findByIdAndUpdate(id, link) OUTRA FORMA
+    let doc = await Link.updateOne({_id: id}, link)
+    res.redirect('/')
+  } catch (error) {
+    res.render('edit', { error, body: req.body })
+  }
+}
 
 
-module.exports = { redirect, addLink, allLinks, deleteLink }
+
+module.exports = { redirect, addLink, allLinks, deleteLink, loadLink, editLink }
