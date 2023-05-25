@@ -2,6 +2,6 @@
 
 project is a redirection api that counts the amount of times it was redirected (click)
 
-project to study node with javascript and node, first project with mongo
+project to study node with javascript and node
 
-uses EJS no front and javascript, node and mongo on backend
+uses EJS on frontend and javascript, node and mongo on backend
